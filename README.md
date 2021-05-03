@@ -13,4 +13,30 @@ There are other classifiers like Random forest and SVM which should give better 
  - A [Docker container](https://docs.docker.com/get-docker/)
  Please note: Using Google cloud services will incur charges. If you are creating a new account, you will be provided with 300 US$ credit, otherwise you'll pay for the services you use.
  
+## The end Product
+
+If you follow the steps below, you would be able to end up with a [Streamlit](https://streamlit.io/) web application.
+
+##Getting the app running
+1. Clone this repo
+```
+git clone 
+```
+2. Change into the Prediction directory
+```
+cd Prediction
+```
+3. Create and activate a virtual environment
+```
+pip install virtualenv
+virtualenv <ENV-NAME>
+.\<ENV-NAME>\Scripts\activate
+```
+4. Install the required dependencies (Streamlit, TensorFlow, etc)
+```
+pip install -r requirements.txt
+Activate Streamlit and run app.py
+streamlit run app.py
+```
+## To run the application successfully, you will need to make the following changes:
 
