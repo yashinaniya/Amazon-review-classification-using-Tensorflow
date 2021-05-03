@@ -40,3 +40,48 @@ streamlit run app.py
 ```
 ## To run the application successfully, you will need to make the following changes:
 
+1. Create a [Project](https://cloud.google.com/appengine/docs/standard/nodejs/building-app/creating-project) on GCP
+2. Create a [Bucket](https://cloud.google.com/storage/docs/creating-buckets) where you will store your Tensorflow SavedModel.
+3. Upload your savedmodel directly to the bucket from the Google colab 
+```
+## Uploading a model to Google Storage from within Colab ##
+
+# Authorize Colab and initalize gcloud (enter the appropriate inputs when asked)
+from google.colab import auth
+auth.authenticate_user()
+!curl https://sdk.cloud.google.com | bash
+!gcloud init
+
+# Upload SavedModel to Google Storage Bucket
+!gsutil cp -r <YOUR_MODEL_PATH> <YOUR_GOOGLE_STORAGE_BUCKET>
+```
+4. [Connect your model in bucket to the AI Platform](https://cloud.google.com/ai-platform/prediction/docs/deploying-models). You can do this step either manually through the GCP console or through gcloud Command line interface.
+5. Create a [Service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts) and then a version for your model.
+6. Once we have concluded all these steps, we can generate a new JSON KEY from the saved model version. This key needs to be updated in the app_classification.py file.
+7. Update the following variables:
+ - In the app_classification.py, make the following changes:
+```
+# Google Cloud Services look for these when your app runs
+
+# Old
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "acoustic-skein-309118-57d660baa292.json"
+
+# New 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "<PATH_TO_YOUR_KEY>"
+```
+- Update the Project name, region and Model
+```
+# Old
+PROJECT = "acoustic-skein-309118"
+REGION = "us-central1" 
+MODEL = "amazon_review_model"
+# New
+PROJECT = "<YOUR_GCP_PROJECT_NAME>"
+REGION = "<YOUR_GCP_REGION>"
+MODEL = "<YOUR_MODEL_NAME>"
+```
+8. Deploy the whole app in GCP
+ - run `make gcloud-deploy` command from your activated virtual environment
+
+
+### if you face any problems relating to working of the application or would like help in developing a similar app for different application feel free to connect with me at [Linkedin](https://www.linkedin.com/in/yash-inaniya-558571bb/)
