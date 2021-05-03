@@ -20,7 +20,7 @@ If you follow the steps below, you would be able to end up with a [Streamlit](ht
 ##Getting the app running
 1. Clone this repo
 ```
-git clone 
+git clone https://github.com/yashinaniya/Amazon-review-classification-using-Tensorflow
 ```
 2. Change into the Prediction directory
 ```
@@ -35,8 +35,10 @@ virtualenv <ENV-NAME>
 4. Install the required dependencies (Streamlit, TensorFlow, etc)
 ```
 pip install -r requirements.txt
-Activate Streamlit and run app.py
-streamlit run app.py
+```
+5. Activate Streamlit and run app.py
+```
+streamlit run app_classification.py
 ```
 ## To run the application successfully, you will need to make the following changes:
 
